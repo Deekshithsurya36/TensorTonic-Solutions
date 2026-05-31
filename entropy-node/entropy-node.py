@@ -6,14 +6,10 @@ def entropy_node(y):
     if len(y) == 0:
         return 0.0
 
-    values, counts = np.unique(y, return_counts=True)
+    _, counts = np.unique(y, return_counts=True)
 
-    probabilities = counts / len(y)
+    probs = counts / len(y)
 
-    entropy = 0.0
-
-    for p in probabilities:
-        if p > 0:
-            entropy -= p * np.log2(p)
+    entropy = -np.sum(probs * np.log2(probs))
 
     return float(entropy)
